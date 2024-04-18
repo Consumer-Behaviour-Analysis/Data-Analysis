@@ -15432,3 +15432,364 @@ pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'module'> must
 
 2024-04-18 23:55:01 [ERROR] Pipeline failed on step 6: Value type <class 'module'> must match with type plot
 2024-04-18 23:55:03 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 00:38:49 [INFO] Question: Provide an analysis of the distribution and any outliers in the 'Gender' column.
+2024-04-19 00:38:49 [INFO] Running PandasAI with openai LLM...
+2024-04-19 00:38:49 [INFO] Prompt ID: d39c7c6d-c664-4c5f-87c2-d13bf36ea7f4
+2024-04-19 00:38:49 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-19 00:38:49 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-19 00:38:49 [INFO] Executing Step 1: CacheLookup
+2024-04-19 00:38:49 [INFO] Using cached response
+2024-04-19 00:38:49 [INFO] Executing Step 2: PromptGeneration
+2024-04-19 00:38:49 [INFO] Executing Step 2: Skipping...
+2024-04-19 00:38:49 [INFO] Executing Step 3: CodeGenerator
+2024-04-19 00:38:49 [INFO] Executing Step 3: Skipping...
+2024-04-19 00:38:49 [INFO] Executing Step 4: CachePopulation
+2024-04-19 00:38:49 [INFO] Executing Step 4: Skipping...
+2024-04-19 00:38:49 [INFO] Executing Step 5: CodeCleaning
+2024-04-19 00:38:49 [INFO] 
+Code running:
+```
+gender_distribution = dfs[0]['Gender'].value_counts()
+gender_outliers = []
+if len(gender_distribution) == 2:
+    gender_outliers = [gender for gender in gender_distribution.index if gender not in ['Male', 'Female']]
+result = {'type': 'string', 'value': f"""Gender distribution:
+{gender_distribution}
+Outliers in Gender column: {gender_outliers}"""}
+        ```
+2024-04-19 00:38:49 [INFO] Executing Step 6: CodeExecution
+2024-04-19 00:38:49 [INFO] Executing Step 7: ResultValidation
+2024-04-19 00:38:49 [INFO] Answer: {'type': 'string', 'value': 'Gender distribution:\nMale      2652\nFemale    1248\nName: Gender, dtype: int64\nOutliers in Gender column: []'}
+2024-04-19 00:38:49 [INFO] Executing Step 8: ResultParsing
+2024-04-19 00:38:50 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 00:38:50 [INFO] Question: Provide an analysis of the distribution and any outliers in the 'Purchase Amount (USD)' column.
+2024-04-19 00:38:50 [INFO] Running PandasAI with openai LLM...
+2024-04-19 00:38:50 [INFO] Prompt ID: 86e139de-390e-422f-944f-d376f0020598
+2024-04-19 00:38:50 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-19 00:38:50 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-19 00:38:50 [INFO] Executing Step 1: CacheLookup
+2024-04-19 00:38:50 [INFO] Using cached response
+2024-04-19 00:38:50 [INFO] Executing Step 2: PromptGeneration
+2024-04-19 00:38:50 [INFO] Executing Step 2: Skipping...
+2024-04-19 00:38:50 [INFO] Executing Step 3: CodeGenerator
+2024-04-19 00:38:50 [INFO] Executing Step 3: Skipping...
+2024-04-19 00:38:50 [INFO] Executing Step 4: CachePopulation
+2024-04-19 00:38:50 [INFO] Executing Step 4: Skipping...
+2024-04-19 00:38:50 [INFO] Executing Step 5: CodeCleaning
+2024-04-19 00:38:50 [INFO] Saving charts to C:\Users\raouy\OneDrive\Documents\CU4012-GamesProgramming\Github Reopos\Data-Analysis\exports\charts\temp_chart.png
+2024-04-19 00:38:50 [INFO] 
+Code running:
+```
+purchase_amounts = dfs[0]['Purchase Amount (USD)']
+mean_purchase_amount = purchase_amounts.mean()
+median_purchase_amount = purchase_amounts.median()
+std_purchase_amount = purchase_amounts.std()
+Q1 = purchase_amounts.quantile(0.25)
+Q3 = purchase_amounts.quantile(0.75)
+IQR = Q3 - Q1
+lower_bound = Q1 - 1.5 * IQR
+upper_bound = Q3 + 1.5 * IQR
+outliers = purchase_amounts[(purchase_amounts < lower_bound) | (purchase_amounts > upper_bound)]
+plt.figure(figsize=(8, 6))
+plt.boxplot(purchase_amounts, vert=False)
+plt.title('Distribution of Purchase Amount (USD)')
+plt.xlabel('Purchase Amount (USD)')
+plt.savefig('C:/Users/raouy/OneDrive/Documents/CU4012-GamesProgramming/Github Reopos/Data-Analysis/exports/charts/temp_chart.png')
+result = {'type': 'string', 'value': f'Mean Purchase Amount: {mean_purchase_amount}, Median Purchase Amount: {median_purchase_amount}, Standard Deviation: {std_purchase_amount}. Outliers: {outliers.tolist()}'}
+        ```
+2024-04-19 00:38:50 [INFO] Executing Step 6: CodeExecution
+2024-04-19 00:38:50 [INFO] Executing Step 7: ResultValidation
+2024-04-19 00:38:50 [INFO] Answer: {'type': 'string', 'value': 'Mean Purchase Amount: 59.76435897435898, Median Purchase Amount: 60.0, Standard Deviation: 23.685392250875307. Outliers: []'}
+2024-04-19 00:38:50 [INFO] Executing Step 8: ResultParsing
+2024-04-19 00:38:52 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 00:38:52 [INFO] Question: Provide an analysis of the distribution in the 'Category' column.
+2024-04-19 00:38:52 [INFO] Running PandasAI with openai LLM...
+2024-04-19 00:38:52 [INFO] Prompt ID: 341ad72d-e385-498e-9ff8-c64e2642ee8c
+2024-04-19 00:38:52 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-19 00:38:52 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-19 00:38:52 [INFO] Executing Step 1: CacheLookup
+2024-04-19 00:38:52 [INFO] Using cached response
+2024-04-19 00:38:52 [INFO] Executing Step 2: PromptGeneration
+2024-04-19 00:38:52 [INFO] Executing Step 2: Skipping...
+2024-04-19 00:38:52 [INFO] Executing Step 3: CodeGenerator
+2024-04-19 00:38:52 [INFO] Executing Step 3: Skipping...
+2024-04-19 00:38:52 [INFO] Executing Step 4: CachePopulation
+2024-04-19 00:38:52 [INFO] Executing Step 4: Skipping...
+2024-04-19 00:38:52 [INFO] Executing Step 5: CodeCleaning
+2024-04-19 00:38:52 [INFO] 
+Code running:
+```
+data = {'Customer ID': [2968, 1806, 919], 'Age': [59, 36, 57], 'Gender': ['Female', 'Male', 'Male'], 'Item Purchased': ['Dress', 'Handbag', 'Blouse'], 'Category': ['Accessories', 'Clothing', 'Footwear'], 'Purchase Amount (USD)': [48, 73, 62], 'Location': ['Massachusetts', 'Delaware', 'Minnesota'], 'Size': ['M', 'S', 'L'], 'Color': ['Lavender', 'Peach', 'Turquoise'], 'Season': ['Summer', 'Fall', 'Spring'], 'Review Rating': [3.8, 2.5, 4.8], 'Subscription Status': ['Yes', 'No', 'Yes'], 'Shipping Type': ['Standard', 'Express', '2-Day Shipping'], 'Discount Applied': ['Yes', 'No', 'Yes'], 'Promo Code Used': ['Yes', 'No', 'Yes'], 'Previous Purchases': [45, 12, 9], 'Payment Method': ['Venmo', 'PayPal', 'Debit Card'], 'Frequency of Purchases': ['Fortnightly', 'Quarterly', 'Bi-Weekly']}
+df = dfs[0]
+category_distribution = df['Category'].value_counts()
+result = {'type': 'dataframe', 'value': category_distribution}
+        ```
+2024-04-19 00:38:52 [INFO] Executing Step 6: CodeExecution
+2024-04-19 00:38:52 [INFO] Executing Step 7: ResultValidation
+2024-04-19 00:38:52 [INFO] Answer: {'type': 'dataframe', 'value':              Category
+Clothing         1737
+Accessories      1240
+Footwear          599
+Outerwear         324}
+2024-04-19 00:38:52 [INFO] Executing Step 8: ResultParsing
+2024-04-19 00:38:53 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 00:38:53 [INFO] Question: Provide an analysis of the distribution in the 'Purchase Amount (USD)' column.
+2024-04-19 00:38:53 [INFO] Running PandasAI with openai LLM...
+2024-04-19 00:38:53 [INFO] Prompt ID: bbb9581d-283f-4fe1-9d84-6a784bc08f9d
+2024-04-19 00:38:53 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-19 00:38:53 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-19 00:38:53 [INFO] Executing Step 1: CacheLookup
+2024-04-19 00:38:53 [INFO] Executing Step 2: PromptGeneration
+2024-04-19 00:38:53 [INFO] Using prompt: <dataframe>
+dfs[0]:3900x18
+Customer ID,Age,Gender,Item Purchased,Category,Purchase Amount (USD),Location,Size,Color,Season,Review Rating,Subscription Status,Shipping Type,Discount Applied,Promo Code Used,Previous Purchases,Payment Method,Frequency of Purchases
+2136,25,Female,Jacket,Clothing,100,Kentucky,L,Beige,Fall,4.8,Yes,Next Day Air,No,Yes,47,Cash,Bi-Weekly
+12,49,Male,Blouse,Accessories,62,Ohio,S,Purple,Spring,3.0,No,Standard,Yes,No,46,Bank Transfer,Every 3 Months
+1605,61,Female,Jeans,Footwear,72,New Mexico,XL,Charcoal,Winter,2.7,No,Store Pickup,No,Yes,6,Debit Card,Weekly
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Provide an analysis of the distribution in the 'Purchase Amount (USD)' column.
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-04-19 00:38:54 [INFO] Executing Step 3: CodeGenerator
+2024-04-19 00:38:57 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 00:38:57 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:3900x18
+Customer ID,Age,Gender,Item Purchased,Category,Purchase Amount (USD),Location,Size,Color,Season,Review Rating,Subscription Status,Shipping Type,Discount Applied,Promo Code Used,Previous Purchases,Payment Method,Frequency of Purchases
+2136,25,Female,Jacket,Clothing,100,Kentucky,L,Beige,Fall,4.8,Yes,Next Day Air,No,Yes,47,Cash,Bi-Weekly
+12,49,Male,Blouse,Accessories,62,Ohio,S,Purple,Spring,3.0,No,Standard,Yes,No,46,Bank Transfer,Every 3 Months
+1605,61,Female,Jeans,Footwear,72,New Mexico,XL,Charcoal,Winter,2.7,No,Store Pickup,No,Yes,6,Debit Card,Weekly
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Provide an analysis of the distribution in the 'Purchase Amount (USD)' column.
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-04-19 00:38:57 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyzing the distribution in the 'Purchase Amount (USD)' column
+purchase_amount_distribution = dfs[0]['Purchase Amount (USD)'].describe()
+
+# Plotting a histogram to visualize the distribution
+plt.figure(figsize=(10, 6))
+plt.hist(dfs[0]['Purchase Amount (USD)'], bins=20, color='skyblue', edgecolor='black')
+plt.xlabel('Purchase Amount (USD)')
+plt.ylabel('Frequency')
+plt.title('Distribution of Purchase Amount (USD)')
+plt.grid(axis='y', alpha=0.75)
+plt.show()
+
+# Declare result variable
+result = {
+    "type": "string",
+    "value": f"Analysis of the distribution in the 'Purchase Amount (USD)' column:\n{purchase_amount_distribution}"
+}
+            ```
+            
+2024-04-19 00:38:57 [INFO] Executing Step 4: CachePopulation
+2024-04-19 00:38:57 [INFO] Executing Step 5: CodeCleaning
+2024-04-19 00:38:57 [INFO] 
+Code running:
+```
+purchase_amount_distribution = dfs[0]['Purchase Amount (USD)'].describe()
+plt.figure(figsize=(10, 6))
+plt.hist(dfs[0]['Purchase Amount (USD)'], bins=20, color='skyblue', edgecolor='black')
+plt.xlabel('Purchase Amount (USD)')
+plt.ylabel('Frequency')
+plt.title('Distribution of Purchase Amount (USD)')
+plt.grid(axis='y', alpha=0.75)
+plt.show()
+result = {'type': 'string', 'value': f"""Analysis of the distribution in the 'Purchase Amount (USD)' column:
+{purchase_amount_distribution}"""}
+        ```
+2024-04-19 00:38:57 [INFO] Executing Step 6: CodeExecution
+2024-04-19 00:38:57 [INFO] Executing Step 7: ResultValidation
+2024-04-19 00:38:57 [INFO] Answer: {'type': 'string', 'value': "Analysis of the distribution in the 'Purchase Amount (USD)' column:\ncount    3900.000000\nmean       59.764359\nstd        23.685392\nmin        20.000000\n25%        39.000000\n50%        60.000000\n75%        81.000000\nmax       100.000000\nName: Purchase Amount (USD), dtype: float64"}
+2024-04-19 00:38:57 [INFO] Executing Step 8: ResultParsing
+2024-04-19 00:38:58 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 00:38:59 [INFO] Question: Provide an analysis of the relationship between 'Review Rating' and 'Purchase Amount (USD)'.
+2024-04-19 00:38:59 [INFO] Running PandasAI with openai LLM...
+2024-04-19 00:38:59 [INFO] Prompt ID: 7fa53348-2577-4993-bee0-45a2d9bc2bc2
+2024-04-19 00:38:59 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-19 00:38:59 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-19 00:38:59 [INFO] Executing Step 1: CacheLookup
+2024-04-19 00:38:59 [INFO] Executing Step 2: PromptGeneration
+2024-04-19 00:38:59 [INFO] Using prompt: <dataframe>
+dfs[0]:3900x18
+Customer ID,Age,Gender,Item Purchased,Category,Purchase Amount (USD),Location,Size,Color,Season,Review Rating,Subscription Status,Shipping Type,Discount Applied,Promo Code Used,Previous Purchases,Payment Method,Frequency of Purchases
+2286,52,Male,Boots,Clothing,46,Texas,XL,White,Spring,2.7,Yes,Store Pickup,No,No,26,Credit Card,Bi-Weekly
+2107,67,Female,Sunglasses,Accessories,32,West Virginia,M,Indigo,Fall,4.5,Yes,Express,Yes,Yes,15,Cash,Monthly
+1115,45,Male,Jeans,Footwear,68,Alabama,S,Cyan,Summer,4.0,No,Next Day Air,No,No,43,PayPal,Fortnightly
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Provide an analysis of the relationship between 'Review Rating' and 'Purchase Amount (USD)'.
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-04-19 00:38:59 [INFO] Executing Step 3: CodeGenerator
+2024-04-19 00:39:02 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 00:39:02 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:3900x18
+Customer ID,Age,Gender,Item Purchased,Category,Purchase Amount (USD),Location,Size,Color,Season,Review Rating,Subscription Status,Shipping Type,Discount Applied,Promo Code Used,Previous Purchases,Payment Method,Frequency of Purchases
+2286,52,Male,Boots,Clothing,46,Texas,XL,White,Spring,2.7,Yes,Store Pickup,No,No,26,Credit Card,Bi-Weekly
+2107,67,Female,Sunglasses,Accessories,32,West Virginia,M,Indigo,Fall,4.5,Yes,Express,Yes,Yes,15,Cash,Monthly
+1115,45,Male,Jeans,Footwear,68,Alabama,S,Cyan,Summer,4.0,No,Next Day Air,No,No,43,PayPal,Fortnightly
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Provide an analysis of the relationship between 'Review Rating' and 'Purchase Amount (USD)'.
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-04-19 00:39:02 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs[0] contains the data
+df = dfs[0]
+
+# Calculate the correlation between 'Review Rating' and 'Purchase Amount (USD)'
+correlation = df['Review Rating'].corr(df['Purchase Amount (USD)'])
+
+# Plotting the relationship between 'Review Rating' and 'Purchase Amount (USD)'
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Review Rating'], df['Purchase Amount (USD)'], color='blue', alpha=0.5)
+plt.title('Relationship between Review Rating and Purchase Amount')
+plt.xlabel('Review Rating')
+plt.ylabel('Purchase Amount (USD)')
+plt.grid(True)
+plt.show()
+
+result = {
+    "type": "string",
+    "value": f"The correlation between Review Rating and Purchase Amount (USD) is: {correlation}"
+}
+            ```
+            
+2024-04-19 00:39:02 [INFO] Executing Step 4: CachePopulation
+2024-04-19 00:39:02 [INFO] Executing Step 5: CodeCleaning
+2024-04-19 00:39:02 [INFO] 
+Code running:
+```
+df = dfs[0]
+correlation = df['Review Rating'].corr(df['Purchase Amount (USD)'])
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Review Rating'], df['Purchase Amount (USD)'], color='blue', alpha=0.5)
+plt.title('Relationship between Review Rating and Purchase Amount')
+plt.xlabel('Review Rating')
+plt.ylabel('Purchase Amount (USD)')
+plt.grid(True)
+plt.show()
+result = {'type': 'string', 'value': f'The correlation between Review Rating and Purchase Amount (USD) is: {correlation}'}
+        ```
+2024-04-19 00:39:02 [INFO] Executing Step 6: CodeExecution
+2024-04-19 00:39:02 [INFO] Executing Step 7: ResultValidation
+2024-04-19 00:39:02 [INFO] Answer: {'type': 'string', 'value': 'The correlation between Review Rating and Purchase Amount (USD) is: 0.030775923073914455'}
+2024-04-19 00:39:02 [INFO] Executing Step 8: ResultParsing
+2024-04-19 00:39:03 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
