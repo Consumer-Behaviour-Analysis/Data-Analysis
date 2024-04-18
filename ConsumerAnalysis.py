@@ -199,7 +199,7 @@ def generate_heatmap(df, columns):
 
 def main():
     st.set_page_config(layout='wide')
-    st.title("Consumer Behavior Analysis using AI")
+    st.title("Consumer Data Analysis using AI")
     st.markdown('<style>h1{color: orange; text-align: center;}</style>', unsafe_allow_html=True)
     st.subheader('Built for All Data Analysis and Visualizations')
 
