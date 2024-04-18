@@ -10,7 +10,7 @@ import hashlib
 
 # Initialize the OpenAI client
 load_dotenv()
-openai_api_key = os.getenv('OPENAI_API_KEY')
+openai_api_key = os.getenv("OPENAI_API_KEY")
 os.environ["OPENAI_API_KEY"] = openai_api_key
 
 client = openai.OpenAI(api_key=openai_api_key)
