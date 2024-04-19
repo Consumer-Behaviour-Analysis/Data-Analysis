@@ -16321,3 +16321,81 @@ pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'matplotlib.fi
 
 2024-04-19 00:51:10 [ERROR] Pipeline failed on step 6: Value type <class 'matplotlib.figure.Figure'> must match with type plot
 2024-04-19 00:51:12 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 01:10:47 [INFO] Question: Provide an analysis of the distribution and any outliers in the 'Gender' column.
+2024-04-19 01:10:47 [INFO] Running PandasAI with openai LLM...
+2024-04-19 01:10:47 [INFO] Prompt ID: ad9bfbc8-976f-479c-9f91-da08d1a3165f
+2024-04-19 01:10:47 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-19 01:10:47 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-19 01:10:47 [INFO] Executing Step 1: CacheLookup
+2024-04-19 01:10:47 [INFO] Using cached response
+2024-04-19 01:10:47 [INFO] Executing Step 2: PromptGeneration
+2024-04-19 01:10:47 [INFO] Executing Step 2: Skipping...
+2024-04-19 01:10:47 [INFO] Executing Step 3: CodeGenerator
+2024-04-19 01:10:47 [INFO] Executing Step 3: Skipping...
+2024-04-19 01:10:47 [INFO] Executing Step 4: CachePopulation
+2024-04-19 01:10:47 [INFO] Executing Step 4: Skipping...
+2024-04-19 01:10:47 [INFO] Executing Step 5: CodeCleaning
+2024-04-19 01:10:47 [INFO] 
+Code running:
+```
+gender_distribution = dfs[0]['Gender'].value_counts()
+gender_outliers = []
+if len(gender_distribution) == 2:
+    gender_outliers = [gender for gender in gender_distribution.index if gender not in ['Male', 'Female']]
+result = {'type': 'string', 'value': f"""Gender distribution:
+{gender_distribution}
+Outliers in Gender column: {gender_outliers}"""}
+        ```
+2024-04-19 01:10:47 [INFO] Executing Step 6: CodeExecution
+2024-04-19 01:10:47 [INFO] Executing Step 7: ResultValidation
+2024-04-19 01:10:47 [INFO] Answer: {'type': 'string', 'value': 'Gender distribution:\nMale      2652\nFemale    1248\nName: Gender, dtype: int64\nOutliers in Gender column: []'}
+2024-04-19 01:10:47 [INFO] Executing Step 8: ResultParsing
+2024-04-19 01:10:48 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 01:10:48 [INFO] Question: Provide an analysis of the distribution and any outliers in the 'Age' column.
+2024-04-19 01:10:48 [INFO] Running PandasAI with openai LLM...
+2024-04-19 01:10:48 [INFO] Prompt ID: 80a08b0e-221f-4f5c-8b6d-0d0b06fac17f
+2024-04-19 01:10:48 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-19 01:10:48 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-19 01:10:48 [INFO] Executing Step 1: CacheLookup
+2024-04-19 01:10:48 [INFO] Using cached response
+2024-04-19 01:10:48 [INFO] Executing Step 2: PromptGeneration
+2024-04-19 01:10:48 [INFO] Executing Step 2: Skipping...
+2024-04-19 01:10:48 [INFO] Executing Step 3: CodeGenerator
+2024-04-19 01:10:48 [INFO] Executing Step 3: Skipping...
+2024-04-19 01:10:48 [INFO] Executing Step 4: CachePopulation
+2024-04-19 01:10:48 [INFO] Executing Step 4: Skipping...
+2024-04-19 01:10:48 [INFO] Executing Step 5: CodeCleaning
+2024-04-19 01:10:48 [INFO] Saving charts to C:\Users\raouy\OneDrive\Documents\CU4012-GamesProgramming\Github Reopos\Data-Analysis\exports\charts\temp_chart.png
+2024-04-19 01:10:48 [ERROR] Pipeline failed on step 5: cannot access local variable 'code_to_run' where it is not associated with a value
+2024-04-19 01:10:50 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 01:10:50 [INFO] Question: Provide an analysis of the distribution in the 'Category' column.
+2024-04-19 01:10:50 [INFO] Running PandasAI with openai LLM...
+2024-04-19 01:10:50 [INFO] Prompt ID: 80672c31-becc-4a7e-8fb4-ba5ea71a1332
+2024-04-19 01:10:50 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-19 01:10:50 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-19 01:10:50 [INFO] Executing Step 1: CacheLookup
+2024-04-19 01:10:50 [INFO] Using cached response
+2024-04-19 01:10:50 [INFO] Executing Step 2: PromptGeneration
+2024-04-19 01:10:50 [INFO] Executing Step 2: Skipping...
+2024-04-19 01:10:50 [INFO] Executing Step 3: CodeGenerator
+2024-04-19 01:10:50 [INFO] Executing Step 3: Skipping...
+2024-04-19 01:10:50 [INFO] Executing Step 4: CachePopulation
+2024-04-19 01:10:50 [INFO] Executing Step 4: Skipping...
+2024-04-19 01:10:50 [INFO] Executing Step 5: CodeCleaning
+2024-04-19 01:10:50 [INFO] 
+Code running:
+```
+data = {'Customer ID': [2968, 1806, 919], 'Age': [59, 36, 57], 'Gender': ['Female', 'Male', 'Male'], 'Item Purchased': ['Dress', 'Handbag', 'Blouse'], 'Category': ['Accessories', 'Clothing', 'Footwear'], 'Purchase Amount (USD)': [48, 73, 62], 'Location': ['Massachusetts', 'Delaware', 'Minnesota'], 'Size': ['M', 'S', 'L'], 'Color': ['Lavender', 'Peach', 'Turquoise'], 'Season': ['Summer', 'Fall', 'Spring'], 'Review Rating': [3.8, 2.5, 4.8], 'Subscription Status': ['Yes', 'No', 'Yes'], 'Shipping Type': ['Standard', 'Express', '2-Day Shipping'], 'Discount Applied': ['Yes', 'No', 'Yes'], 'Promo Code Used': ['Yes', 'No', 'Yes'], 'Previous Purchases': [45, 12, 9], 'Payment Method': ['Venmo', 'PayPal', 'Debit Card'], 'Frequency of Purchases': ['Fortnightly', 'Quarterly', 'Bi-Weekly']}
+df = dfs[0]
+category_distribution = df['Category'].value_counts()
+result = {'type': 'dataframe', 'value': category_distribution}
+        ```
+2024-04-19 01:10:50 [INFO] Executing Step 6: CodeExecution
+2024-04-19 01:10:50 [INFO] Executing Step 7: ResultValidation
+2024-04-19 01:10:50 [INFO] Answer: {'type': 'dataframe', 'value':              Category
+Clothing         1737
+Accessories      1240
+Footwear          599
+Outerwear         324}
+2024-04-19 01:10:50 [INFO] Executing Step 8: ResultParsing
+2024-04-19 01:10:52 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
