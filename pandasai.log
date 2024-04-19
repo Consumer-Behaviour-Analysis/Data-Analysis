@@ -15793,3 +15793,531 @@ result = {'type': 'string', 'value': f'The correlation between Review Rating and
 2024-04-19 00:39:02 [INFO] Answer: {'type': 'string', 'value': 'The correlation between Review Rating and Purchase Amount (USD) is: 0.030775923073914455'}
 2024-04-19 00:39:02 [INFO] Executing Step 8: ResultParsing
 2024-04-19 00:39:03 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 00:50:56 [INFO] Question: Provide an analysis of the distribution and any outliers in the 'Gender' column.
+2024-04-19 00:50:56 [INFO] Running PandasAI with openai LLM...
+2024-04-19 00:50:56 [INFO] Prompt ID: 7b392cf1-cb65-4c0e-b16e-47c8ffaa8193
+2024-04-19 00:50:56 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-19 00:50:56 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-19 00:50:56 [INFO] Executing Step 1: CacheLookup
+2024-04-19 00:50:56 [INFO] Using cached response
+2024-04-19 00:50:56 [INFO] Executing Step 2: PromptGeneration
+2024-04-19 00:50:56 [INFO] Executing Step 2: Skipping...
+2024-04-19 00:50:56 [INFO] Executing Step 3: CodeGenerator
+2024-04-19 00:50:56 [INFO] Executing Step 3: Skipping...
+2024-04-19 00:50:56 [INFO] Executing Step 4: CachePopulation
+2024-04-19 00:50:56 [INFO] Executing Step 4: Skipping...
+2024-04-19 00:50:56 [INFO] Executing Step 5: CodeCleaning
+2024-04-19 00:50:56 [INFO] 
+Code running:
+```
+gender_distribution = dfs[0]['Gender'].value_counts()
+gender_outliers = []
+if len(gender_distribution) == 2:
+    gender_outliers = [gender for gender in gender_distribution.index if gender not in ['Male', 'Female']]
+result = {'type': 'string', 'value': f"""Gender distribution:
+{gender_distribution}
+Outliers in Gender column: {gender_outliers}"""}
+        ```
+2024-04-19 00:50:56 [INFO] Executing Step 6: CodeExecution
+2024-04-19 00:50:56 [INFO] Executing Step 7: ResultValidation
+2024-04-19 00:50:56 [INFO] Answer: {'type': 'string', 'value': 'Gender distribution:\nMale      2652\nFemale    1248\nName: Gender, dtype: int64\nOutliers in Gender column: []'}
+2024-04-19 00:50:56 [INFO] Executing Step 8: ResultParsing
+2024-04-19 00:50:57 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 00:50:57 [INFO] Question: Provide an analysis of the distribution in the 'Category' column.
+2024-04-19 00:50:57 [INFO] Running PandasAI with openai LLM...
+2024-04-19 00:50:57 [INFO] Prompt ID: f53a0590-db31-47bd-ab7b-ff0073e58b13
+2024-04-19 00:50:57 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-19 00:50:57 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-19 00:50:57 [INFO] Executing Step 1: CacheLookup
+2024-04-19 00:50:57 [INFO] Using cached response
+2024-04-19 00:50:57 [INFO] Executing Step 2: PromptGeneration
+2024-04-19 00:50:57 [INFO] Executing Step 2: Skipping...
+2024-04-19 00:50:57 [INFO] Executing Step 3: CodeGenerator
+2024-04-19 00:50:57 [INFO] Executing Step 3: Skipping...
+2024-04-19 00:50:57 [INFO] Executing Step 4: CachePopulation
+2024-04-19 00:50:57 [INFO] Executing Step 4: Skipping...
+2024-04-19 00:50:57 [INFO] Executing Step 5: CodeCleaning
+2024-04-19 00:50:57 [INFO] 
+Code running:
+```
+data = {'Customer ID': [2968, 1806, 919], 'Age': [59, 36, 57], 'Gender': ['Female', 'Male', 'Male'], 'Item Purchased': ['Dress', 'Handbag', 'Blouse'], 'Category': ['Accessories', 'Clothing', 'Footwear'], 'Purchase Amount (USD)': [48, 73, 62], 'Location': ['Massachusetts', 'Delaware', 'Minnesota'], 'Size': ['M', 'S', 'L'], 'Color': ['Lavender', 'Peach', 'Turquoise'], 'Season': ['Summer', 'Fall', 'Spring'], 'Review Rating': [3.8, 2.5, 4.8], 'Subscription Status': ['Yes', 'No', 'Yes'], 'Shipping Type': ['Standard', 'Express', '2-Day Shipping'], 'Discount Applied': ['Yes', 'No', 'Yes'], 'Promo Code Used': ['Yes', 'No', 'Yes'], 'Previous Purchases': [45, 12, 9], 'Payment Method': ['Venmo', 'PayPal', 'Debit Card'], 'Frequency of Purchases': ['Fortnightly', 'Quarterly', 'Bi-Weekly']}
+df = dfs[0]
+category_distribution = df['Category'].value_counts()
+result = {'type': 'dataframe', 'value': category_distribution}
+        ```
+2024-04-19 00:50:57 [INFO] Executing Step 6: CodeExecution
+2024-04-19 00:50:57 [INFO] Executing Step 7: ResultValidation
+2024-04-19 00:50:57 [INFO] Answer: {'type': 'dataframe', 'value':              Category
+Clothing         1737
+Accessories      1240
+Footwear          599
+Outerwear         324}
+2024-04-19 00:50:57 [INFO] Executing Step 8: ResultParsing
+2024-04-19 00:50:59 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 00:50:59 [INFO] Question: Provide an analysis of the relationship between 'Age' and 'Review Rating'.
+2024-04-19 00:50:59 [INFO] Running PandasAI with openai LLM...
+2024-04-19 00:50:59 [INFO] Prompt ID: 3893f0c2-000f-4a9a-896f-5843b8483bb9
+2024-04-19 00:50:59 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-19 00:50:59 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-19 00:50:59 [INFO] Executing Step 1: CacheLookup
+2024-04-19 00:50:59 [INFO] Executing Step 2: PromptGeneration
+2024-04-19 00:50:59 [INFO] Using prompt: <dataframe>
+dfs[0]:3900x18
+Customer ID,Age,Gender,Item Purchased,Category,Purchase Amount (USD),Location,Size,Color,Season,Review Rating,Subscription Status,Shipping Type,Discount Applied,Promo Code Used,Previous Purchases,Payment Method,Frequency of Purchases
+2709,60,Female,Gloves,Footwear,44,Nevada,XL,Black,Spring,3.8,No,Store Pickup,No,Yes,23,Venmo,Fortnightly
+355,69,Female,Scarf,Clothing,48,Tennessee,L,Olive,Summer,4.8,No,2-Day Shipping,Yes,No,33,Debit Card,Quarterly
+3036,46,Male,Jacket,Accessories,69,Wisconsin,S,Blue,Winter,4.1,Yes,Free Shipping,Yes,No,24,PayPal,Annually
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Provide an analysis of the relationship between 'Age' and 'Review Rating'.
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-04-19 00:50:59 [INFO] Executing Step 3: CodeGenerator
+2024-04-19 00:51:03 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 00:51:03 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:3900x18
+Customer ID,Age,Gender,Item Purchased,Category,Purchase Amount (USD),Location,Size,Color,Season,Review Rating,Subscription Status,Shipping Type,Discount Applied,Promo Code Used,Previous Purchases,Payment Method,Frequency of Purchases
+2709,60,Female,Gloves,Footwear,44,Nevada,XL,Black,Spring,3.8,No,Store Pickup,No,Yes,23,Venmo,Fortnightly
+355,69,Female,Scarf,Clothing,48,Tennessee,L,Olive,Summer,4.8,No,2-Day Shipping,Yes,No,33,Debit Card,Quarterly
+3036,46,Male,Jacket,Accessories,69,Wisconsin,S,Blue,Winter,4.1,Yes,Free Shipping,Yes,No,24,PayPal,Annually
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Provide an analysis of the relationship between 'Age' and 'Review Rating'.
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-04-19 00:51:03 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs[0] contains the data
+age_review_df = dfs[0][['Age', 'Review Rating']]
+
+# Grouping by Age and calculating the mean Review Rating
+age_review_mean = age_review_df.groupby('Age').mean().reset_index()
+
+# Plotting the relationship between Age and Review Rating
+plt.figure(figsize=(10, 6))
+plt.scatter(age_review_mean['Age'], age_review_mean['Review Rating'])
+plt.xlabel('Age')
+plt.ylabel('Average Review Rating')
+plt.title('Relationship between Age and Review Rating')
+plt.grid(True)
+plt.show()
+
+# Declare result variable as a plot
+result = {"type": "plot", "value": "relationship_age_review.png"}
+            ```
+            
+2024-04-19 00:51:03 [INFO] Executing Step 4: CachePopulation
+2024-04-19 00:51:03 [INFO] Executing Step 5: CodeCleaning
+2024-04-19 00:51:03 [INFO] Saving charts to C:\Users\raouy\OneDrive\Documents\CU4012-GamesProgramming\Github Reopos\Data-Analysis\exports\charts\temp_chart.png
+2024-04-19 00:51:03 [INFO] 
+Code running:
+```
+age_review_df = dfs[0][['Age', 'Review Rating']]
+age_review_mean = age_review_df.groupby('Age').mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.scatter(age_review_mean['Age'], age_review_mean['Review Rating'])
+plt.xlabel('Age')
+plt.ylabel('Average Review Rating')
+plt.title('Relationship between Age and Review Rating')
+plt.grid(True)
+plt.show()
+result = {'type': 'plot', 'value': 'C:/Users/raouy/OneDrive/Documents/CU4012-GamesProgramming/Github Reopos/Data-Analysis/exports/charts/temp_chart.png'}
+        ```
+2024-04-19 00:51:03 [INFO] Executing Step 6: CodeExecution
+2024-04-19 00:51:03 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\raouy\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-04-19 00:51:03 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-04-19 00:51:03 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-04-19 00:51:03 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-04-19 00:51:03 [INFO] Using prompt: <dataframe>
+dfs[0]:3900x18
+Customer ID,Age,Gender,Item Purchased,Category,Purchase Amount (USD),Location,Size,Color,Season,Review Rating,Subscription Status,Shipping Type,Discount Applied,Promo Code Used,Previous Purchases,Payment Method,Frequency of Purchases
+2709,60,Female,Gloves,Footwear,44,Nevada,XL,Black,Spring,3.8,No,Store Pickup,No,Yes,23,Venmo,Fortnightly
+355,69,Female,Scarf,Clothing,48,Tennessee,L,Olive,Summer,4.8,No,2-Day Shipping,Yes,No,33,Debit Card,Quarterly
+3036,46,Male,Jacket,Accessories,69,Wisconsin,S,Blue,Winter,4.1,Yes,Free Shipping,Yes,No,24,PayPal,Annually
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Provide an analysis of the relationship between 'Age' and 'Review Rating'.
+
+You generated this python code:
+age_review_df = dfs[0][['Age', 'Review Rating']]
+age_review_mean = age_review_df.groupby('Age').mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.scatter(age_review_mean['Age'], age_review_mean['Review Rating'])
+plt.xlabel('Age')
+plt.ylabel('Average Review Rating')
+plt.title('Relationship between Age and Review Rating')
+plt.grid(True)
+plt.show()
+result = {'type': 'plot', 'value': 'C:/Users/raouy/OneDrive/Documents/CU4012-GamesProgramming/Github Reopos/Data-Analysis/exports/charts/temp_chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\raouy\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-04-19 00:51:03 [INFO] Executing Step 1: CodeGenerator
+2024-04-19 00:51:06 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 00:51:06 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:3900x18
+Customer ID,Age,Gender,Item Purchased,Category,Purchase Amount (USD),Location,Size,Color,Season,Review Rating,Subscription Status,Shipping Type,Discount Applied,Promo Code Used,Previous Purchases,Payment Method,Frequency of Purchases
+2709,60,Female,Gloves,Footwear,44,Nevada,XL,Black,Spring,3.8,No,Store Pickup,No,Yes,23,Venmo,Fortnightly
+355,69,Female,Scarf,Clothing,48,Tennessee,L,Olive,Summer,4.8,No,2-Day Shipping,Yes,No,33,Debit Card,Quarterly
+3036,46,Male,Jacket,Accessories,69,Wisconsin,S,Blue,Winter,4.1,Yes,Free Shipping,Yes,No,24,PayPal,Annually
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Provide an analysis of the relationship between 'Age' and 'Review Rating'.
+
+You generated this python code:
+age_review_df = dfs[0][['Age', 'Review Rating']]
+age_review_mean = age_review_df.groupby('Age').mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.scatter(age_review_mean['Age'], age_review_mean['Review Rating'])
+plt.xlabel('Age')
+plt.ylabel('Average Review Rating')
+plt.title('Relationship between Age and Review Rating')
+plt.grid(True)
+plt.show()
+result = {'type': 'plot', 'value': 'C:/Users/raouy/OneDrive/Documents/CU4012-GamesProgramming/Github Reopos/Data-Analysis/exports/charts/temp_chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\raouy\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+            
+2024-04-19 00:51:06 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+# Create a DataFrame with 'Age' and 'Review Rating' columns
+age_review_df = dfs[0][['Age', 'Review Rating']]
+
+# Group by 'Age' and calculate the mean of 'Review Rating'
+age_review_mean = age_review_df.groupby('Age').mean().reset_index()
+
+# Plotting the relationship between Age and Review Rating
+plt.figure(figsize=(10, 6))
+plt.scatter(age_review_mean['Age'], age_review_mean['Review Rating'])
+plt.xlabel('Age')
+plt.ylabel('Average Review Rating')
+plt.title('Relationship between Age and Review Rating')
+plt.grid(True)
+plt.show()
+
+result = {'type': 'plot', 'value': plt}  # Update the output value to the plot object
+            ```
+            
+2024-04-19 00:51:06 [INFO] Executing Step 2: CodeCleaning
+2024-04-19 00:51:06 [INFO] 
+Code running:
+```
+age_review_df = dfs[0][['Age', 'Review Rating']]
+age_review_mean = age_review_df.groupby('Age').mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.scatter(age_review_mean['Age'], age_review_mean['Review Rating'])
+plt.xlabel('Age')
+plt.ylabel('Average Review Rating')
+plt.title('Relationship between Age and Review Rating')
+plt.grid(True)
+plt.show()
+result = {'type': 'plot', 'value': plt}
+        ```
+2024-04-19 00:51:06 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\raouy\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'module'> must match with type plot
+
+2024-04-19 00:51:06 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2024-04-19 00:51:06 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-04-19 00:51:06 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-04-19 00:51:06 [INFO] Using prompt: <dataframe>
+dfs[0]:3900x18
+Customer ID,Age,Gender,Item Purchased,Category,Purchase Amount (USD),Location,Size,Color,Season,Review Rating,Subscription Status,Shipping Type,Discount Applied,Promo Code Used,Previous Purchases,Payment Method,Frequency of Purchases
+2709,60,Female,Gloves,Footwear,44,Nevada,XL,Black,Spring,3.8,No,Store Pickup,No,Yes,23,Venmo,Fortnightly
+355,69,Female,Scarf,Clothing,48,Tennessee,L,Olive,Summer,4.8,No,2-Day Shipping,Yes,No,33,Debit Card,Quarterly
+3036,46,Male,Jacket,Accessories,69,Wisconsin,S,Blue,Winter,4.1,Yes,Free Shipping,Yes,No,24,PayPal,Annually
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Provide an analysis of the relationship between 'Age' and 'Review Rating'.
+
+You generated this python code:
+age_review_df = dfs[0][['Age', 'Review Rating']]
+age_review_mean = age_review_df.groupby('Age').mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.scatter(age_review_mean['Age'], age_review_mean['Review Rating'])
+plt.xlabel('Age')
+plt.ylabel('Average Review Rating')
+plt.title('Relationship between Age and Review Rating')
+plt.grid(True)
+plt.show()
+result = {'type': 'plot', 'value': plt}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\raouy\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'module'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-04-19 00:51:06 [INFO] Executing Step 1: CodeGenerator
+2024-04-19 00:51:08 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 00:51:08 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:3900x18
+Customer ID,Age,Gender,Item Purchased,Category,Purchase Amount (USD),Location,Size,Color,Season,Review Rating,Subscription Status,Shipping Type,Discount Applied,Promo Code Used,Previous Purchases,Payment Method,Frequency of Purchases
+2709,60,Female,Gloves,Footwear,44,Nevada,XL,Black,Spring,3.8,No,Store Pickup,No,Yes,23,Venmo,Fortnightly
+355,69,Female,Scarf,Clothing,48,Tennessee,L,Olive,Summer,4.8,No,2-Day Shipping,Yes,No,33,Debit Card,Quarterly
+3036,46,Male,Jacket,Accessories,69,Wisconsin,S,Blue,Winter,4.1,Yes,Free Shipping,Yes,No,24,PayPal,Annually
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Provide an analysis of the relationship between 'Age' and 'Review Rating'.
+
+You generated this python code:
+age_review_df = dfs[0][['Age', 'Review Rating']]
+age_review_mean = age_review_df.groupby('Age').mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.scatter(age_review_mean['Age'], age_review_mean['Review Rating'])
+plt.xlabel('Age')
+plt.ylabel('Average Review Rating')
+plt.title('Relationship between Age and Review Rating')
+plt.grid(True)
+plt.show()
+result = {'type': 'plot', 'value': plt}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\raouy\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'module'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+            
+2024-04-19 00:51:08 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+age_review_df = dfs[0][['Age', 'Review Rating']]
+age_review_mean = age_review_df.groupby('Age').mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.scatter(age_review_mean['Age'], age_review_mean['Review Rating'])
+plt.xlabel('Age')
+plt.ylabel('Average Review Rating')
+plt.title('Relationship between Age and Review Rating')
+plt.grid(True)
+plt.show()
+result = {'type': 'plot', 'value': plt.gcf()}
+            ```
+            
+2024-04-19 00:51:08 [INFO] Executing Step 2: CodeCleaning
+2024-04-19 00:51:08 [INFO] 
+Code running:
+```
+age_review_df = dfs[0][['Age', 'Review Rating']]
+age_review_mean = age_review_df.groupby('Age').mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.scatter(age_review_mean['Age'], age_review_mean['Review Rating'])
+plt.xlabel('Age')
+plt.ylabel('Average Review Rating')
+plt.title('Relationship between Age and Review Rating')
+plt.grid(True)
+plt.show()
+result = {'type': 'plot', 'value': plt.gcf()}
+        ```
+2024-04-19 00:51:08 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\raouy\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'matplotlib.figure.Figure'> must match with type plot
+
+2024-04-19 00:51:08 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2024-04-19 00:51:08 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-04-19 00:51:08 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-04-19 00:51:08 [INFO] Using prompt: <dataframe>
+dfs[0]:3900x18
+Customer ID,Age,Gender,Item Purchased,Category,Purchase Amount (USD),Location,Size,Color,Season,Review Rating,Subscription Status,Shipping Type,Discount Applied,Promo Code Used,Previous Purchases,Payment Method,Frequency of Purchases
+2709,60,Female,Gloves,Footwear,44,Nevada,XL,Black,Spring,3.8,No,Store Pickup,No,Yes,23,Venmo,Fortnightly
+355,69,Female,Scarf,Clothing,48,Tennessee,L,Olive,Summer,4.8,No,2-Day Shipping,Yes,No,33,Debit Card,Quarterly
+3036,46,Male,Jacket,Accessories,69,Wisconsin,S,Blue,Winter,4.1,Yes,Free Shipping,Yes,No,24,PayPal,Annually
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Provide an analysis of the relationship between 'Age' and 'Review Rating'.
+
+You generated this python code:
+age_review_df = dfs[0][['Age', 'Review Rating']]
+age_review_mean = age_review_df.groupby('Age').mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.scatter(age_review_mean['Age'], age_review_mean['Review Rating'])
+plt.xlabel('Age')
+plt.ylabel('Average Review Rating')
+plt.title('Relationship between Age and Review Rating')
+plt.grid(True)
+plt.show()
+result = {'type': 'plot', 'value': plt.gcf()}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\raouy\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'matplotlib.figure.Figure'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-04-19 00:51:08 [INFO] Executing Step 1: CodeGenerator
+2024-04-19 00:51:10 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-19 00:51:10 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:3900x18
+Customer ID,Age,Gender,Item Purchased,Category,Purchase Amount (USD),Location,Size,Color,Season,Review Rating,Subscription Status,Shipping Type,Discount Applied,Promo Code Used,Previous Purchases,Payment Method,Frequency of Purchases
+2709,60,Female,Gloves,Footwear,44,Nevada,XL,Black,Spring,3.8,No,Store Pickup,No,Yes,23,Venmo,Fortnightly
+355,69,Female,Scarf,Clothing,48,Tennessee,L,Olive,Summer,4.8,No,2-Day Shipping,Yes,No,33,Debit Card,Quarterly
+3036,46,Male,Jacket,Accessories,69,Wisconsin,S,Blue,Winter,4.1,Yes,Free Shipping,Yes,No,24,PayPal,Annually
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Provide an analysis of the relationship between 'Age' and 'Review Rating'.
+
+You generated this python code:
+age_review_df = dfs[0][['Age', 'Review Rating']]
+age_review_mean = age_review_df.groupby('Age').mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.scatter(age_review_mean['Age'], age_review_mean['Review Rating'])
+plt.xlabel('Age')
+plt.ylabel('Average Review Rating')
+plt.title('Relationship between Age and Review Rating')
+plt.grid(True)
+plt.show()
+result = {'type': 'plot', 'value': plt.gcf()}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\raouy\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'matplotlib.figure.Figure'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+            
+2024-04-19 00:51:10 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+age_review_df = dfs[0][['Age', 'Review Rating']]
+age_review_mean = age_review_df.groupby('Age').mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.scatter(age_review_mean['Age'], age_review_mean['Review Rating'])
+plt.xlabel('Age')
+plt.ylabel('Average Review Rating')
+plt.title('Relationship between Age and Review Rating')
+plt.grid(True)
+plt.show()
+result = {'type': 'plot', 'value': plt.gcf()}
+            ```
+            
+2024-04-19 00:51:10 [INFO] Executing Step 2: CodeCleaning
+2024-04-19 00:51:10 [INFO] 
+Code running:
+```
+age_review_df = dfs[0][['Age', 'Review Rating']]
+age_review_mean = age_review_df.groupby('Age').mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.scatter(age_review_mean['Age'], age_review_mean['Review Rating'])
+plt.xlabel('Age')
+plt.ylabel('Average Review Rating')
+plt.title('Relationship between Age and Review Rating')
+plt.grid(True)
+plt.show()
+result = {'type': 'plot', 'value': plt.gcf()}
+        ```
+2024-04-19 00:51:10 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\raouy\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'matplotlib.figure.Figure'> must match with type plot
+
+2024-04-19 00:51:10 [ERROR] Pipeline failed on step 6: Value type <class 'matplotlib.figure.Figure'> must match with type plot
+2024-04-19 00:51:12 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
